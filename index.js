@@ -13,7 +13,7 @@ dotenv.config();
 // creating server for frontend requests
 const server = http.createServer(app);
 app.use(cors({
-    origin: true,
+    origin: 'https://682f6f0042538d1b69ee543b--dainty-panda-21fcd9.netlify.app/',
     credentials: true
 }));
 app.use(express.json())
@@ -33,7 +33,9 @@ app.use('/user', router);
 
 const io = new Server(server, {
     cors: {
-        origin: true, // Change this for production security
+        origin: 'https://682f6f0042538d1b69ee543b--dainty-panda-21fcd9.netlify.app/', // Change this for production security
+        methods: ["GET", "POST"],
+        credentials:true
     },
 });
 
@@ -130,6 +132,6 @@ io.on("connection", (socket) => {
     });
 });
 
-server.listen(process.env.PORT, '0.0.0.0', () => {
+server.listen(process.env.PORT, () => {
     console.log('Server running on http://192.168.197.249:3004');
 });
