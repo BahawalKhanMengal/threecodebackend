@@ -43,7 +43,7 @@ router.post('/register', async (req, res) => {
     await newUser.save();
 
     const token = jwt.sign({ email: newUser.email }, secretKey, { expiresIn: '5m' });
-    const link = `http://localhost:3004/user/verify/${token}`;
+    const link = `https://threecode.onrender.com/user/verify/${token}`;
 
     await sendEmailtoUser(link, email);
 
